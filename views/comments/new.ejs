@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Comments</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css">
+    <style>
+        .wrapper{
+            display:flex;
+            justify-content: center;
+            flex:1;
+        }
+
+        .flex {
+            flex:1;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg style = 'margin-right: 5px;' xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+            </svg>
+            <span class="fs-4">Forum Manager</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="/comment/new" class="nav-link active" aria-current="page">Add Comment</a></li>
+        </ul>
+    </header>
+</div>
+<div class = "wrapper">
+<div class="container flex">
+    <h1>Comments</h1>
+    <table class="table table-striped" style="border:2px inset black;">
+        <tr>
+            <th>User</th>
+            <th>Comments</th>
+        </tr>
+        <%
+        comments.forEach((comment) => {
+        %>
+            <tr>
+                <td><%= comment.user %></td>
+                <td><%= comment.comment %></td>
+                <td><a href='/comment/edit/<%= comment.id %>' class="btn btn-success">modify</a></td>
+                <td>
+                    <form action="/comment/delete/<%= comment.id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger px-3" style = 'width:100px; border:2px outset black; border-radius: 08px;' type="submit">delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+</div>
+<div class="container flex" style="margin-top: 60px">
+<form action="/comment/add" method="POST">
+    <div class="mb-3">
+        <label for="user">User:</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="user" required>
+    </div>
+    <div class="mb-3">
+        <label for="comment" class="form-label">Comment:</label><br>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="5" cols="30"></textarea>
+    </div>
+    <button type="submit" class="btn btn-warning">submit</button>
+</form>
+</div>
+</div>
+<script src="/js/bootstrap.bundle.js"></script>
+</body>
+</html>
