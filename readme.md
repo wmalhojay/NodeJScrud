@@ -42,6 +42,7 @@ The application will start running on `http://localhost:8080`.
 
 ## Project Structure
 
+```python
 ├─index.js # Main entry point
 │ package.json # Project metadata and dependencies
 │ README.md # Project documentation
@@ -59,7 +60,7 @@ The application will start running on `http://localhost:8080`.
 │ modify.ejs # Template for modifying a comment
 └───partials
 header.ejs # Common header template
-
+```
 
 ## Usage
 
